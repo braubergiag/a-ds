@@ -32,10 +32,12 @@ void push(Node ** p_list, Data data){
 int main(){
 
     Node * list = NULL;
-    push(&list,1);
-    push(&list,0);
-    push(&list,42);
-    print(list);
+
+    Data test[] = {1,2,3,4,5};
+    for (size_t i = 0; i < sizeof(test)/sizeof(test[0]); ++i){
+        push(&list,test[i]);
+        print(list);
+    }
 
 
 }
