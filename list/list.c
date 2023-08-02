@@ -28,16 +28,21 @@ void push(Node ** p_list, Data data){
     *p_list = p;
 }
 
+int is_empty(Node * list){
+    return list == NULL;
+}
 
 int main(){
 
     Node * list = NULL;
-
+    printf("Empty: %s\n", is_empty(list) ? "YES" : "NO");
     Data test[] = {1,2,3,4,5};
     for (size_t i = 0; i < sizeof(test)/sizeof(test[0]); ++i){
         push(&list,test[i]);
         print(list);
     }
+    printf("Empty: %s\n", is_empty(list) ? "YES" : "NO");
 
 
 }
+
