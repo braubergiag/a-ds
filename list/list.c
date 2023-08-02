@@ -27,7 +27,13 @@ void push(Node ** p_list, Data data){
     p->next = *p_list;
     *p_list = p;
 }
-
+Data pop(Node ** plist) {
+    Node * p = *plist;
+    Data val = p->data;
+    *plist = (*plist)->next;
+    free(p);
+    return val;
+}
 int is_empty(Node * list){
     return list == NULL;
 }
@@ -39,6 +45,13 @@ int main(){
     Data test[] = {1,2,3,4,5};
     for (size_t i = 0; i < sizeof(test)/sizeof(test[0]); ++i){
         push(&list,test[i]);
+        print(list);
+    }
+    printf("Empty: %s\n", is_empty(list) ? "YES" : "NO");
+
+    while (!is_empty(list)) {
+        Data val  = pop(&list);
+        printf("pop %d: ",val);
         print(list);
     }
     printf("Empty: %s\n", is_empty(list) ? "YES" : "NO");
