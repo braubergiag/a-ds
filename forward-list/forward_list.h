@@ -20,12 +20,19 @@ public:
     void DeleteAfter(Cell<T> *after_me);
     void AddAtTheBeginning(const T & value);
     void AddAtTheEnd(const T & value);
+    void InsertCellAfter(Cell<T> * after_me, const T & value);
     void Iterate() const;
 
 
 private:
     Cell<T> * head_{nullptr};
 };
+
+template<typename T>
+void ForwardList<T>::InsertCellAfter(Cell<T> *after_me, const T &value) {
+    auto after_me_old_next  =  after_me->next;
+    after_me->next = new Cell<T>{value,after_me_old_next};
+}
 
 template<typename T>
 void ForwardList<T>::AddAtTheEnd(const T &value) {
