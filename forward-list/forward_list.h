@@ -14,8 +14,10 @@ template <typename T>
 class ForwardList {
 public:
     ForwardList();
+    ~ForwardList();
     Cell<T> * FindCell(const T & value) const;
     Cell<T> * FindCellBefore(const T & value) const;
+    void DeleteAfter(Cell<T> *after_me);
     void AddAtTheBeginning(const T & value);
     void Iterate() const;
 
@@ -23,6 +25,23 @@ public:
 private:
     Cell<T> * head_{nullptr};
 };
+
+template<typename T>
+ForwardList<T>::~ForwardList() {
+    while (head_->next){
+        DeleteAfter(head_);
+    }
+    delete head_;
+
+}
+
+template<typename T>
+void ForwardList<T>::DeleteAfter(Cell<T> *after_me) {
+    auto target_cell = after_me->next;
+    after_me->next = after_me->next->next;
+    delete target_cell;
+
+}
 
 template<typename T>
 void ForwardList<T>::AddAtTheBeginning(const T &value) {
