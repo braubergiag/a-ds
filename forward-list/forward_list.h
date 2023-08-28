@@ -19,12 +19,22 @@ public:
     Cell<T> * FindCellBefore(const T & value) const;
     void DeleteAfter(Cell<T> *after_me);
     void AddAtTheBeginning(const T & value);
+    void AddAtTheEnd(const T & value);
     void Iterate() const;
 
 
 private:
     Cell<T> * head_{nullptr};
 };
+
+template<typename T>
+void ForwardList<T>::AddAtTheEnd(const T &value) {
+    auto curr_cell = head_;
+    while (curr_cell->next) {
+        curr_cell = curr_cell->next;
+    }
+    curr_cell->next = new Cell<T>{value, nullptr};
+}
 
 template<typename T>
 ForwardList<T>::~ForwardList() {

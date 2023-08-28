@@ -12,6 +12,14 @@ TEST(ForwardList, Iterate){
     list.Iterate();
 }
 
+TEST(ForwardList,AddAtTheEnd){
+    ForwardList<int> list;
+    for (int i = 0; i < COUNT; ++i) {
+        list.AddAtTheEnd(i);
+    }
+
+    list.Iterate();
+}
 
 TEST(ForwardList, FindCell){
     ForwardList<int> list;
