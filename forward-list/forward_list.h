@@ -17,6 +17,8 @@ public:
     Cell<T> * FindCell(const T & value) const;
     Cell<T> * FindCellBefore(const T & value) const;
     void AddAtTheBeginning(const T & value);
+    void Iterate() const;
+
 
 private:
     Cell<T> * head_{nullptr};
@@ -52,4 +54,14 @@ Cell<T> *ForwardList<T>::FindCellBefore(const T &value) const {
     }
     return nullptr;
 }
+template<typename T>
+void ForwardList<T>::Iterate() const  {
+    auto it = head_->next;
+    while (it){
+        std::cout << it->value;
+        it = it->next;
+    }
+    std::cout << std::endl;
+}
+
 #endif //A_DS_FORWARD_LIST_H
